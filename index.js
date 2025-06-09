@@ -340,8 +340,10 @@ global.plugins[filename] = module.default || module;
 } catch (e) {
 conn.logger.error(`error require plugin '${filename}\n${format(e)}'`)
 } finally {
-global.plugins = Object.fromEntries(Object.entries(global.plugins).sort(([a], [b]) => a.localeCompare(b)))
-}}
+    if (global.plugins && typeof global.plugins === 'object') {
+        global.plugins = Object.fromEntries(Object.entries(global.plugins).sort(([a], [b]) => a.localeCompare(b)))
+    }
+
 }}
 Object.freeze(global.reload)
 import(pluginFolder, global.reload)
