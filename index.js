@@ -344,7 +344,7 @@ global.plugins = Object.fromEntries(Object.entries(global.plugins).sort(([a], [b
 }}
 }}
 Object.freeze(global.reload)
-watch(pluginFolder, global.reload)
+import(pluginFolder, global.reload)
 await global.reloadHandler()
 async function _quickTest() {
 const test = await Promise.all([
